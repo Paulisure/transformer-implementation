@@ -53,7 +53,7 @@ class MultiHeadAttention(nn.Module):
         # Attention mechanism
         self.attention = ScaledDotProductAttention()
 
-def split_heads(self, x):
+    def split_heads(self, x):
         """Split the last dimension into (num_heads, d_k)"""
         batch_size = x.size(0)
         x = x.view(batch_size, -1, self.num_heads, self.d_k)
