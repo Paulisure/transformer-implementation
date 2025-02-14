@@ -1,7 +1,7 @@
 import torch
 import matplotlib.pyplot as plt
 import seaborn as sns
-from ..attention import MultiHeadAttention
+from ..v1_basic_attention.attention import MultiHeadAttention
 
 def test_attention_shapes():
     """Test if the attention mechanism produces correct output shapes."""
@@ -23,9 +23,8 @@ def test_attention_shapes():
     
     assert attention_weights.shape == (batch_size, num_heads, seq_length, seq_length), \
         f"Expected attention weights shape {(batch_size, num_heads, seq_length, seq_length)}, got {attention_weights.shape}"
-    
-    return True
 
+    
 def test_attention_mask():
     """Test if the attention mechanism correctly applies masks."""
     batch_size = 1
@@ -49,8 +48,6 @@ def test_attention_mask():
     upper_triangular = torch.triu(upper_triangular, diagonal=1)
     
     assert torch.all(upper_triangular == 0), "Mask was not correctly applied"
-    
-    return True
 
 if __name__ == "__main__":
     test_attention_shapes()
